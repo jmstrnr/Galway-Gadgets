@@ -6,6 +6,6 @@ Hosted at: https://galway-gadgets-1931a9.netlify.app/
 
 To use the cart, order form and checkout functionality, you can login with the below credentials:
 
-user: user
+username: user
 
 password: pass
