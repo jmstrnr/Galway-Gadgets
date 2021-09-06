@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #Galway Gadgets
 
 A small online electronic store made using Bootstrap as part of GMIT's HDIP in Software Development.
