@@ -1,0 +1,232 @@
+/*---------------------------------------------------------------------------------*/
+/* Global CSS */
+
+/* To avoid browser differences in margin/padding, and use the more intuitive border-box model */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* So all anchor links will use smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/*---------------------------------------------------------------------------------*/
+/* Navigation Bar  */
+
+/* To give the navigation bar a dark background color, and make it full width. 
+absolute position and z-index is used to it is shown above the carousel image on the z-axis.
+top is used to have it positioned at the top of the page. */
+.navbar {
+  background-color: #343a40;
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+  top: 0;
+}
+
+/* The logout button is not displayed by default, only when the user is logged in. */
+.logout-btn {
+  display: none;
+}
+
+/*---------------------------------------------------------------------------------*/
+/* Login/Signup Modals  */
+
+/* To set a max-width of 450px on the modal popup */
+.modal-dialog {
+  max-width: 450px;
+}
+
+/* To add padding to the bottom and sides of the modal content */
+.modal-content {
+  padding: 0 1rem 1rem 1rem;
+}
+
+/* The -2rem top-margin is to ensure the modal header text isn't below the x button to dismiss the modal */
+.form-title {
+  margin: -2rem 0rem 2rem;
+}
+
+/* To round the borders of the  login/signup button */
+.btn-round {
+  border-radius: 3rem;
+}
+
+/* To add padding around the modal footer content at the bottom of the form */
+.modal-footer-content {
+  padding: 0.3rem 0rem;
+}
+
+/*---------------------------------------------------------------------------------*/
+/* Carousel/Slideshow */
+
+/* For ensuring each carousel image takes up the entire screen, and is centered */
+.carousel-item {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Each of these classes is for specifying the url for each carousel background image.  */
+/* A linear gradient is used to darken the background image so the white caption text is more readable. */
+.carousel-image-1 {
+  background-image: linear-gradient(rgba(70, 70, 70, 0.6), rgba(0, 0, 0, 0.7)),
+    url('./img/computerstore1.jpg');
+}
+
+.carousel-image-2 {
+  background-image: linear-gradient(rgba(70, 70, 70, 0.6), rgba(0, 0, 0, 0.7)),
+    url('./img/computerstore2.jpg');
+}
+
+.carousel-image-3 {
+  background-image: linear-gradient(rgba(70, 70, 70, 0.6), rgba(0, 0, 0, 0.7)),
+    url('./img/computerstore3.jpg');
+}
+
+/* For centering the caption text in the carousel images */
+.carousel-caption {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/*---------------------------------------------------------------------------------*/
+/* Contact Modal */
+
+/* To override bootstrap default styling and ensure that the text-area input and its icon is displayed at 100% height */
+.contact-textarea,
+.contact-textarea--icon {
+  height: auto !important;
+}
+
+/*---------------------------------------------------------------------------------*/
+/* Collapse/Accordian */
+
+/* For changing the cursor to a pointer while hovering over the FAQ header text,
+ in order to make it more clear to the user that it can be clicked to expand */
+.card-header:hover {
+  cursor: pointer;
+}
+
+/*---------------------------------------------------------------------------------*/
+/* Testimonials */
+
+/* For adding a white background and padding to the testimonial text. The element is set to position: relative to ensure
+ that the absolutely positioned arrow uses it as a reference point. */
+.testimonial-textbox {
+  padding: 30px;
+  background-color: #fff;
+  position: relative;
+}
+
+/* For styling the arrow going from the textbox to the author image. It is positioned absolutely so it can be offset using left and bottom. */
+.testimonial-textbox::after {
+  content: '';
+  position: absolute;
+  left: 30px;
+  bottom: -24px;
+  width: 0;
+  height: 0;
+  border: 15px solid transparent;
+  border-width: 12px 15px;
+  border-top-color: #fff;
+}
+
+/* For setting the image size, and floating it left. */
+.testimonial-image {
+  max-width: 60px;
+  float: left;
+}
+
+/* To add twitters signature blue color to the author twitter link */
+.testimonial-twitter {
+  color: #1da1f2;
+}
+
+/*---------------------------------------------------------------------------------*/
+/* Products */
+
+/* For centering the product image within its container */
+.product-image-container {
+  text-align: center;
+}
+
+/* For setting the dimensions of the product images */
+.product-image {
+  width: 350px;
+  height: 250px;
+}
+
+/* For setting the color of the rating stars */
+.star {
+  color: #ffa41c;
+}
+
+/*---------------------------------------------------------------------------------*/
+/* Login Alert */
+
+/* To style the login alert. It is not displayed by default, only when a user clicks the add to cart button when not logged in.
+ The position fixed and bottom 0 rules are used to fix it to the bottom of the screen, and the left and transform translate 
+ rules are used to center it. z-index is used to ensure it appears above other elements on the z-axis. */
+.login-alert {
+  display: none;
+  background-color: #f44336;
+  max-width: 500px;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+/* To add an underline to the login text to make it clearer that its a link */
+.login-alert-link {
+  text-decoration-line: underline;
+}
+
+/* For styling the x button to close the alert. float is used to float it to the right, and cursor pointer is used to make 
+ it more clear that it can be clicked on. */
+.close-login-alert-btn {
+  margin-left: 15px;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+/*---------------------------------------------------------------------------------*/
+/* Order Summary */
+
+/* For hiding the order summary section by default when the user is not logged in */
+.order-summary {
+  display: none;
+}
+
+/* For hiding the order summary table rows for each product by default unless the user has added that product to their cart */
+.order-row {
+  display: none;
+}
+
+/* For setting the dimensions of the product images in the table */
+.product-image-table {
+  width: 50px;
+  height: 50px;
+}
+
+/* For vertically aligning the contents of each table cell */
+.table td {
+  vertical-align: middle;
+}
+
+/*---------------------------------------------------------------------------------*/
+/* Checkout Modal */
+
+/* For setting the max-width of the checkout modal form */
+.checkout-modal {
+  max-width: 960px;
+}
