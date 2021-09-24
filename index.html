@@ -22,903 +22,884 @@
   </head> 
 
 <body>  
+  <header>
+    <!-- Navigation Bar -->
+    <!-- navbar-expand-md class displays all the navigation links on medium screens and larger, while the collapsible mobile submenu is displayed on smaller screens -->
+    <nav class="navbar navbar-expand-md navbar-dark">
+      <a class="navbar-brand" href="#home">Galway Gadgets</a>
+      <!-- navbar-toggler is used to create a button to toggle the collapsible mobile submenu, and navbar-toggler-right aligns that button to the right -->
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb" aria-expanded="true">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navb" class="navbar-collapse collapse hide"> 
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#features">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#faq">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#testimonials">Testimonials</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#products">Products</a>
+          </li>
+        </ul>
+    
+        <ul class="nav navbar-nav ml-auto">
+          <li class="nav-item">
+            <!-- data-target attribute is set to the loginModal so clicking the link triggers the login modal to appear -->
+            <a class="nav-link login-btn" href="#"  data-toggle="modal" data-target="#loginModal"><span class="fas fa-sign-in-alt"></span> Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link signup-btn" href="#" data-toggle="modal" data-target="#signupModal"><span class="fas fa-user"></span> Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link btn btn-dark logout-btn"><span class="fas fa-sign-in-alt"></span> Log out</button>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-  <!-- Navigation Bar -->
-  <!-- navbar-expand-md class displays all the navigation links on medium screens and larger, while the collapsible mobile submenu is displayed on smaller screens -->
-  <nav class="navbar navbar-expand-md navbar-dark">
-    <a class="navbar-brand" href="#home">Galway Gadgets</a>
-    <!-- navbar-toggler is used to create a button to toggle the collapsible mobile submenu, and navbar-toggler-right aligns that button to the right -->
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb" aria-expanded="true">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div id="navb" class="navbar-collapse collapse hide"> <!--navb id is so it can be targeted by the data-target attribute to collapse the mobile navigation submenu-->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#features">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#faq">FAQ</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#testimonials">Testimonials</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#products">Products</a>
-        </li>
-      </ul>
+    <!-- Login Modal -->
+    <!-- fade class to ensure modal fades in rather than suddenly appearing. loginModal id is so it can be targeted by the data-target attribute on the navbar login link -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-bottom-0"> 
+            <!-- data-dismiss attribute set to modal to allow clicking the x button to dismiss modal-->
+            <button type="button" class="close close-login-modal-button" data-dismiss="modal" aria-label="Close"> 
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          
+          <div class="modal-body">
+            <div class="form-title text-center">
+              <h4>Login</h4>
+            </div>
+            <div class="d-flex flex-column text-center">
+              <!-- onsubmit attribute set to return false to prevent the forms default behaviour of reloading the page-->
+              <form method="post" onsubmit="return false" class="login-form">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="login-username" placeholder="Your username..." required>
+                </div>
+                <div class="form-group">
+                  <input type="password" class="form-control" id="login-password" placeholder="Your password..." required>
+                </div>
+                <input type="submit" value="Login" class="btn btn-info btn-block btn-round">
+              </form>            
+            </div>
+          </div>
+
+          <div class="modal-footer d-flex justify-content-center">
+            <!-- data-dismiss attribute used to dismiss current modal before data-toggle and data-target attributes trigger the other modal -->
+            <div class="modal-footer-content">Not a member yet? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#signupModal" class="text-info"> Sign Up</a>.</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header border-bottom-0">
+            <button type="button" class="close close-signup-modal-button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          
+          <div class="modal-body">
+            <div class="form-title text-center">
+              <h4>Signup</h4>
+            </div>
+            <div class="d-flex flex-column text-center">
+              <form method="post" onsubmit="return false" class="signup-form">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="signup-username" placeholder="Your username..." minlength="4" maxlength="25" required>
+                </div>
+                <div class="form-group">
+                  <input type="email" class="form-control" id="signup-email" placeholder="Your email..." required >
+                </div> 
+                <div class="form-group">
+                  <input type="password" class="form-control" id="signup-password" placeholder="Your password..." minlength="4" maxlength="25" required>
+                </div>
+                <input type="submit" value="Signup" class="btn btn-info btn-block btn-round">
+              </form>            
+            </div>
+          </div>
+
+          <div class="modal-footer d-flex justify-content-center">
+            <div class="modal-footer-content">Already have an account? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#loginModal" class="text-info"> Log in</a>.</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Image Slideshow/Carousel -->
+    <section id="home">
   
-      <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item">
-          <!-- data-target attribute is set to the loginModal so clicking the link triggers the login modal to appear -->
-          <a class="nav-link login-btn" href="#"  data-toggle="modal" data-target="#loginModal"><span class="fas fa-sign-in-alt"></span> Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link signup-btn" href="#" data-toggle="modal" data-target="#signupModal"><span class="fas fa-user"></span> Sign Up</a>
-        </li>
-        <li class="nav-item">
-          <button class="nav-link btn btn-dark logout-btn"><span class="fas fa-sign-in-alt"></span> Log out</button>
-        </li>
-      </ul>
-    </div>
-  </nav>
+      <!-- carousel id is so carousel functionality works and data-target attribute can target the carousel -->
+      <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel"> 
 
-  <!-- Login Modal -->
-  <!-- fade class to ensure modal fades in rather than suddenly appearing. loginModal id is so it can be targeted by the data-target attribute on the navbar login link -->
-  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header border-bottom-0"> <!-- border-bottom-0 class to remove any bottom border-->
-          <button type="button" class="close close-login-modal-button" data-dismiss="modal" aria-label="Close"> <!-- data-dismiss attribute set to modal to allow clicking the x button to dismiss modal-->
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        
-        <div class="modal-body">
-          <div class="form-title text-center">
-            <h4>Login</h4>
-          </div>
-          <!-- d-flex to use flexbox and flex-column to make the y/column axis the primary axis -->
-          <div class="d-flex flex-column text-center">
-            <!-- onsubmit attribute set to return false to prevent the forms default behaviour of reloading the page-->
-            <form method="post" onsubmit="return false" class="login-form">
-              <div class="form-group">
-                <!-- required attribute to make field value required for form submission -->
-                <input type="text" class="form-control" id="login-username" placeholder="Your username..." required>
+        <!-- Carousel indicators for the indicators at the bottom of the slide. The active class is added to the indicator for the starting slide -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel" data-slide-to="1" ></li>
+          <li data-target="#carousel" data-slide-to="2" ></li>
+        </ol>
+
+        <div class="carousel-inner">
+
+            <!-- Carousel item class used to style the carousel image. The active class is added to the starting carousel item -->
+          <div class="carousel-item carousel-image-1 active">
+            <div class="container">
+
+              <!-- Carousel caption class used to style the carousel caption -->
+              <div class="carousel-caption d-block mb-5">
+                <h1 class="display-3">Galway Gadgets</h1>
+                <p class="lead">We offer high quality electronic goods sold at affordable prices. <br> 
+                  Our staff are passionate about tech, so be sure to ask if you have any questions.</p>
+                <a href="#features" class="btn btn-primary btn-lg">Learn more</a>
               </div>
-              <div class="form-group">
-                <!-- type set to password to ensure text entered into field is hidden as asterisks -->
-                <input type="password" class="form-control" id="login-password" placeholder="Your password..." required>
+            </div>
+          </div>
+
+          <div class="carousel-item carousel-image-2">
+            <div class="container">
+              <div class="carousel-caption d-block mb-5">
+                <h2 class="display-3">Our Products</h2>
+                <p class="lead">We have a wide range of electronics for both home and office use. <br>
+                  With our selection of computers, phones or gaming accessories, we have all your tech needs covered!</p>
+                <a href="#products" class="btn btn-primary btn-lg">View products</a>
               </div>
-              <input type="submit" value="Login" class="btn btn-info btn-block btn-round">
-            </form>            
+            </div>
+          </div>
+
+          <div class="carousel-item carousel-image-3">
+            <div class="container">
+              <div class="carousel-caption d-block mb-5">
+                <h2 class="display-3">Our Services</h2>
+                <p class="lead">Our professional staff will repair and refurbish any damaged electronic goods you may have. <br>
+                  Whether it's a cracked phone screen or a damaged CPU, we can get it sorted.
+                </p>
+                <a href="#" data-toggle="modal" data-target="#contactModal" class="btn btn-success btn-lg">Contact us</a>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="modal-footer d-flex justify-content-center">
-          <!-- data-dismiss attribute used to dismiss current modal before data-toggle and data-target attributes trigger the other modal -->
-          <div class="modal-footer-content">Not a member yet? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#signupModal" class="text-info"> Sign Up</a>.</div>
-        </div>
+        <!-- Data attributes to allow user to click to next or previous image -->
+        <a href="#carousel" data-slide="prev" class="carousel-control-prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
 
+        <a href="#carousel" data-slide="next" class="carousel-control-next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- Signup Modal -->
-  <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header border-bottom-0">
-          <button type="button" class="close close-signup-modal-button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        
-        <div class="modal-body">
-          <div class="form-title text-center">
-            <h4>Signup</h4>
-          </div>
-          <div class="d-flex flex-column text-center">
-            <form method="post" onsubmit="return false" class="signup-form">
-              <div class="form-group">
-                <!-- minlength and maxlength attributes to set minumum and maximum length of valid input.  -->
-                <input type="text" class="form-control" id="signup-username" placeholder="Your username..." minlength="4" maxlength="25" required>
-              </div>
-              <div class="form-group">
-                <!-- type set to email to ensure a valid email that contains @ was entered -->
-                <input type="email" class="form-control" id="signup-email" placeholder="Your email..." required >
-              </div> 
-              <div class="form-group">
-                <input type="password" class="form-control" id="signup-password" placeholder="Your password..." minlength="4" maxlength="25" required>
-              </div>
-              <input type="submit" value="Signup" class="btn btn-info btn-block btn-round">
-            </form>            
-          </div>
-        </div>
-
-        <div class="modal-footer d-flex justify-content-center">
-          <div class="modal-footer-content">Already have an account? <a href="#" data-dismiss="modal" data-toggle="modal" data-target="#loginModal" class="text-info"> Log in</a>.</div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-  <!-- Hero Image Slideshow/Carousel -->
-  <section id="home"> <!---home id is for the Galway Gadgets text anchor link in the nav bar-->
-    
-    <!-- carousel id is so carousel functionality works and data-target attribute can target the carousel -->
-    <div id="carousel" class="carousel slide carousel-fade" data-ride="carousel"> 
-
-      <!-- Carousel indicators for the indicators at the bottom of the slide. The active class is added to the indicator for the starting slide -->
-      <ol class="carousel-indicators">
-        <li data-target="#carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel" data-slide-to="1" ></li>
-        <li data-target="#carousel" data-slide-to="2" ></li>
-      </ol>
-
-      <div class="carousel-inner">
-
-          <!-- Carousel item class used to style the carousel image. The active class is added to the starting carousel item -->
-        <div class="carousel-item carousel-image-1 active">
-          <div class="container">
-
-            <!-- Carousel caption class used to style the carousel caption -->
-            <div class="carousel-caption d-block mb-5">
-              <h1 class="display-3">Galway Gadgets</h1>
-              <p class="lead">We offer high quality electronic goods sold at affordable prices. <br> 
-                Our staff are passionate about tech, so be sure to ask if you have any questions.</p>
-              <a href="#features" class="btn btn-primary btn-lg">Learn more</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="carousel-item carousel-image-2">
-          <div class="container">
-            <div class="carousel-caption d-block mb-5">
-              <h2 class="display-3">Our Products</h2>
-              <p class="lead">We have a wide range of electronics for both home and office use. <br>
-                With our selection of computers, phones or gaming accessories, we have all your tech needs covered!</p>
-              <a href="#products" class="btn btn-primary btn-lg">View products</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="carousel-item carousel-image-3">
-          <div class="container">
-            <div class="carousel-caption d-block mb-5">
-              <h2 class="display-3">Our Services</h2>
-              <p class="lead">Our professional staff will repair and refurbish any damaged electronic goods you may have. <br>
-                Whether it's a cracked phone screen or a damaged CPU, we can get it sorted.
-              </p>
-              <a href="#" data-toggle="modal" data-target="#contactModal" class="btn btn-success btn-lg">Contact us</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Data attributes to allow user to click to next or previous image -->
-      <a href="#carousel" data-slide="prev" class="carousel-control-prev">
-        <span class="carousel-control-prev-icon"></span>
-      </a>
-
-      <a href="#carousel" data-slide="next" class="carousel-control-next">
-        <span class="carousel-control-next-icon"></span>
-      </a>
-    </div>
-  </section>
-
-  <!-- Contact Modal -->
-  <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header border-bottom-0">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        
-        <div class="modal-body">
-          <div class="form-title text-center">
-            <h4>Get in touch!</h4>
-          </div>
-          <div class="d-flex flex-column text-center">
-            <form>
-              <div class="form-group">
-                <div class="input-group input-group-lg">
-                  <div class="input-group-prepend">
-                    <!-- bg-success used to create a green background, and text-white used to create white icons -->
-                    <span class="input-group-text bg-success text-white">
-                      <i class="fas fa-user"></i>
-                    </span>
-                  </div>
-                  <input type="text" class="form-control bg-dark text-white" placeholder="Name">
-                </div>
-              </div>
-    
-              <div class="form-group">
-                <div class="input-group input-group-lg">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text bg-success text-white">
-                      <i class="fas fa-envelope"></i>
-                    </span>
-                  </div>
-                  <input type="email" class="form-control bg-dark text-white" placeholder="Email">
-                </div>
-              </div>
-    
-              <div class="form-group">
-                <div class="input-group input-group-lg">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text bg-success text-white contact-textarea--icon">
-                      <i class="fas fa-pencil-alt"></i>
-                    </span>
-                  </div>
-                  <textarea cols="20" rows="4" class="form-control bg-dark text-white contact-textarea" placeholder="Please describe your problem in detail and how you would like us to help."></textarea>
-                </div>
-              </div>
-    
-              <input type="submit" value="Submit" class="btn btn-success btn-block btn-lg">
-            </form>          
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
-
-  <!-- Features -->
-  <section id="features" class="p-5 mt-5 mb-5"> <!---features id is for the anchor links in the nav bar and first carousel image-->
-    
-    <div class="container mb-5">
-      <p class="text-center display-4">Why choose us?</p>
-      <p class="text-center h5">See why we are Galways favourite electronic goods store!</p>
-    </div>
-
-    <div class="container">
-      <!-- row class used to align cards horizontally. col-md-4 class used to create medium-sized columns -->
-      <div class="row mb-4">
-        <div class="col-md-4">
-          <!-- card class is used to create each feature card. bg-info and bg-dark are alternated to create alternating colors. -->
-          <div class="card bg-info text-white text-center">
-            <div class="card-body">
-              <!-- fontawesome is used for all icons -->
-              <i class="fas fa-comments fa-3x"></i>
-              <h3>Fantastic Service</h3>
-              Our friendly and knowledgeable staff will be glad to assist you to better understand your needs.
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card bg-dark text-white text-center">
-            <div class="card-body">
-              <i class="fas fa-cart-plus fa-3x"></i>
-              <h3>Order Online</h3>
-              Order from the comfort of your home and we will deliver the latest tech straight to your door.
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="card bg-info text-white text-center">
-            <div class="card-body">
-            <i class="fas fa-paper-plane fa-3x"></i>
-            <h3>Free Express Delivery</h3>
-            All online purchases include free express delivery, with orders arriving within 2-5 working days.
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Frequently Asked Questions -->
-  <section id="faq" class="py-5 text-center bg-light mt-5"> <!---faq id is for the anchor link in the nav bar-->
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <div class="container mt-5 mb-5">
-            <p class="text-center text-info display-4 ">FAQ</p>
-          </div>
-
-          <!-- Collapse/Accordian Component -->
-          <!-- accordian id is so accordian functionality works and data-parent attribute can target the accordian -->
-          <div id="accordion">
-
-            <!-- The card class is used to style each question and answer pair as a card -->
-            <div class="card">
-              <div class="card-header">
-                <h5 class="mb-0">
-                  <div href="#collapse1" data-toggle="collapse" data-parent="#accordion">
-                    What if I change my mind and want to return a product?
-                  </div>
-                </h5>
-              </div>
-
-              <!-- The collapse class hides the content by default. Clicking on the card-header text adds the show class which displays the content -->
-              <div id="collapse1" class="collapse show">
-                <!-- card-body class used to create text within a padded section of the card -->
-                <div class="card-body text-left">
-                  No problem! All purchases have a 30-day return window during which you can return the product to get a full refund. Note that this does not 
-                  apply to any products that have been damaged or tampered with.
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-header">
-                <h5 class="mb-0">
-                  <div href="#collapse2" data-toggle="collapse" data-parent="#accordion">
-                    Are discounts available on commercial bulk orders?
-                  </div>
-                </h5>
-              </div>
-
-              <div id="collapse2" class="collapse">
-                <div class="card-body text-left">
-                  Absolutely! We offer discounts on the total order cost for any bulk purchases from business and commercial customers. This discount is higher the more you order, 
-                  allowing you to furnish your office without breaking the bank.
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
-              <div class="card-header">
-                <h5 class="mb-0">
-                  <div href="#collapse3" data-toggle="collapse" data-parent="#accordion">
-                    Can I order custom goods that aren't listed in the product catalogue?
-                  </div>
-                </h5>
-              </div>
-
-              <div id="collapse3" class="collapse">
-                <div class="card-body text-left">
-                  Sure! If you have your eye on a specific gadget that you can't find in our selection, just send us an email specifying that product. We will
-                  let you know if and when we can make it available for you.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials -->
-  <section id="testimonials" class="testimonials bg-light py-5 text-center mb-5"> <!---testimonials id is for the anchor link in the nav bar-->
-    <div class="container">
-      
-      <div class="container mt-5 mb-3">
-        <h3 class="text-center text-info display-4">Testimonials</h3>
-        <p class="text-center text-dark h5">Here's what our happy customers have to say about us!</p>
-      </div>
-
-      <div class="row pt-5 pb-2">
-        <div class="col-md-6 col-lg-4 item mb-5">
-          <div class="testimonial-textbox">
-            <!-- lorem ipsum used for testimonial text. mb-0 class used to remove any bottom margin. -->
-            <p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non porro, iure aliquam neque ut!</p>
-          </div>
-          <!-- rounded-circle class used to display the image as a rounded circle. pl-3 class used to position image underneath arrow. -->
-          <div class="mt-4 pl-3"><img class="rounded-circle testimonial-image" src="img/user-1.jpg" alt="smiling woman">
-            <h5>Sarah Mulaney</h5>
-            <a href="#" class="testimonial-twitter"><i class="fab fa-twitter"></i> sarahm@twitter.com</a>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 item mb-5">
-          <div class="testimonial-textbox">
-            <p class="mb-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa magni at veritatis, consequatur blanditiis recusandae.</p>
-          </div>
-          <div class="mt-4 pl-3"><img class="rounded-circle testimonial-image" src="img/user-2.jpg" alt="smiling man">
-            <h5>Mike Matthews</h5>
-            <a href="#" class="testimonial-twitter"><i class="fab fa-twitter"></i> mikeymatt@twitter.com</a>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4 item mb-5">
-          <div class="testimonial-textbox">
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis neque laborum illo ad, autem nam.</p>
-          </div>
-          <div class="mt-4 pl-3"><img class="rounded-circle testimonial-image" src="img/user-3.jpg" alt="smiling bearded man">
-            <h5>Bob Johnson</h5>
-            <a href="#" class="testimonial-twitter"><i class="fab fa-twitter"></i> bobbyj@twitter.com</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Alert to prompt user to login when they try to add an item to cart without being logged in -->
-  <div class="login-alert text-white mb-4 p-3">
-    <span class="close-login-alert-btn text-white">&times;</span> 
-    To add an item to your cart, please <a href="#"  data-toggle="modal" data-target="#loginModal"><strong class="login-alert-link text-white">Login!</strong></a> 
-  </div>
-
-  <!-- Products -->
-  <section id="products" class="py-5 mb-5"> <!-- products id is for the anchor links in the nav bar and in the second carousel image -->
-
-    <div class="container mb-5">
-      <h2 class="text-center display-4">Our Products</h2>
-      <p class="text-center h5">We offer top of the range tech at affordable prices!</p>
-    </div>
-
-    <!-- d-flex class used to make container use flexbox for easier alignment of product cards -->
-    <div class="container d-flex justify-content-center">
-      <div class="row">
-
-        <div class="col-md-4 mt-2 mb-3">
-            <!-- Each product listing is done as a card using the card class, with the card-body class adding padding around all content -->
-            <div class="card">
-                <div class="card-body product-image-container">
-                   <!-- card-img and img-fluid classes are used to make the product images responsive -->
-                  <img src="img/lenovoideapad.jpg" class="card-img product-image img-fluid" alt="Lenovo ideapad laptop"> 
-                </div>
-                <div class="card-body bg-light text-center">
-                  <div class="mb-2">
-                      <!-- font-weight-semibold class used to increase font weight and make text more bold -->
-                      <h4 class="font-weight-semibold mb-2">Lenovo Ideapad</h4>
-                  </div>
-                  <!-- Multiple font awesome star icons are used to show the products rating -->
-                  <div> 
-                    <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> 
-                  </div>
-                  <!-- text-muted class used to lighten text color -->
-                  <p class="text-muted mb-3">15 reviews</p> 
-                  <h4 class="mb-4 font-weight-semibold">€799.99</h4>
-                  <!-- btn class used to add bootstrap button styling, and btn-outline-primary used to add color. 
-                    mr-2 class used to add right margin between cart icon and text -->
-                  <button type="button" class="btn btn-outline-primary btn-add-to-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 mt-2 mb-3">
-            <div class="card">
-                <div class="card-body product-image-container">
-                  <img src="img/havit-mechanical-keyboard.jpg" class="card-img product-image img-fluid" alt="Havit mechanical keyboard">
-                </div>
-                <div class="card-body bg-light text-center">
-                    <div class="mb-2">
-                        <h4 class="font-weight-semibold mb-2">Havit Mechanical Keyboard</h4> 
-                    </div>
-                    <div> 
-                      <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> 
-                    </div>
-                    <p class="text-muted mb-3">9 reviews</p> 
-                    <h4 class="mb-4 font-weight-semibold">€199.99</h4>
-                    <button type="button" class="btn btn-outline-primary btn-add-to-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
-                  </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 mt-2 mb-3">
-            <div class="card">
-                <div class="card-body product-image-container">
-                  <img src="img/beats-ep-headphones.jpg" class="card-img product-image img-fluid" alt="Beats wired headphones"> 
-                </div>
-                <div class="card-body bg-light text-center">
-                    <div class="mb-2">
-                        <h4 class="font-weight-semibold mb-2">Beats Wired Headphones</h4> 
-                    </div>
-                    <div> 
-                      <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> 
-                    </div>
-                    <p class="text-muted mb-3">28 reviews</p> 
-                    <h4 class="mb-4 font-weight-semibold">€149.99</h4>
-                    <button type="button" class="btn btn-outline-primary btn-add-to-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 mt-2 mb-3">
-            <div class="card">
-                <div class="card-body product-image-container">
-                    <img src="img/ipad.jpg" class="card-img product-image img-fluid" alt="Apple Ipad">
-                </div>
-                <div class="card-body bg-light text-center">
-                    <div class="mb-2">
-                        <h4 class="font-weight-semibold mb-2">Apple Ipad 5</h4> 
-                    </div>
-                    <div> 
-                      <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> 
-                    </div>
-                    <p class="text-muted mb-3">17 reviews</p> 
-                    <h4 class="mb-4 font-weight-semibold">€599.99</h4>
-                    <button type="button" class="btn btn-outline-primary btn-add-to-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 mt-2 mb-3">
-            <div class="card">
-                <div class="card-body product-image-container">
-                  <img src="img/iphone-12-pro-family-hero.jpg" class="card-img product-image img-fluid" alt="Apple Iphone 12"> 
-                </div>
-                <div class="card-body bg-light text-center">
-                    <div class="mb-2">
-                        <h4 class="font-weight-semibold mb-2">Apple Iphone 12 Pro</h4> 
-                    </div>
-                    <div> 
-                      <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> 
-                    </div>
-                    <p class="text-muted mb-3">6 reviews</p> 
-                    <h4 class="mb-4 font-weight-semibold">€499.99</h4>
-                    <button type="button" class="btn btn-outline-primary btn-add-to-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-4 mt-2 mb-3">
-            <div class="card">
-                <div class="card-body product-image-container">
-                  <img src="img/iPhone-XR-red-back.webp" class="card-img product-image img-fluid" alt="Apple Iphone XR"> 
-                </div>
-                <div class="card-body bg-light text-center">
-                    <div class="mb-2">
-                        <h4 class="font-weight-semibold mb-2">Apple Iphone XR Red</h4> 
-                    </div>
-                    <div> 
-                      <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> 
-                    </div>
-                    <p class="text-muted mb-3">11 reviews</p> 
-                    <h4 class="mb-4 font-weight-semibold">€399.99</h4>
-                    <button type="button" class="btn btn-outline-primary btn-add-to-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
-                </div>
-            </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Order Summary -->
-  <!-- this section is not shown by default, and is only displayed when the user is logged in -->
-  <section class="order-summary py-5 mb-5">
-    <div class="container mb-5">
-      <h4 class="text-center">Your Order</h4>
-    </div>
-    <div class="container">
-      <div class="col-lg-12 col-sm-12">
-        <!-- table-responsive class to allow table to be horizontally scrolled for greater responsiveness -->
-        <div class="table-responsive">
-          <table class="table text-center">
-            <thead>
-              <tr>
-                <!-- d-sm-none class used to not display the image column on  small screens -->
-                <td class="d-sm-none d-md-block">Image</td>
-                <td>Name</td>
-                <td>Quantity</td>
-                <td>Price</td>
-                <td>Subtotal</td>
-                <td>Remove</td>
-              </tr>
-            </thead>
-            <tbody>
-
-              <tr class="order-row">
-                <td class="d-sm-none d-md-block">
-                  <img src="img/lenovoideapad.jpg" class="product-image-table" alt="Lenovo ideapad laptop">
-                </td>
-                <td>Lenovo Ideapad</td>
-                <td class="quantity">0</td>
-                <td class="price">€799.99</td>
-                <td class="subtotal">€0</td>
-                <td>
-                  <button class="btn btn-outline-danger btn-remove-product">
-                    <i class="fa fa-minus"></i>
-                  </button>
-                </td>
-              </tr>
-
-              <tr class="order-row">
-                <td class="d-sm-none d-md-block">
-                  <img src="img/havit-mechanical-keyboard.jpg" class="product-image-table" alt="Havit mechanical keyboard">
-                </td>
-                <td>Havit Mechanical Keyboard</td>
-                <td class="quantity">0</td>
-                <td class="price">€199.99</td>
-                <td class="subtotal">€0</td>
-                <td>
-                  <button class="btn btn-outline-danger btn-remove-product">
-                    <i class="fa fa-minus"></i>
-                  </button>
-                </td>
-              </tr>
-
-              <tr class="order-row">
-                <td class="d-sm-none d-md-block">
-                  <img src="img/beats-ep-headphones.jpg" class="product-image-table" alt="Beats wired headphones">
-                </td>
-                <td>Beats Wired Headphones</td>
-                <td class="quantity">0</td>
-                <td class="price">€149.99</td>
-                <td class="subtotal">€0</td>
-                <td>
-                  <button class="btn btn-outline-danger btn-remove-product">
-                    <i class="fa fa-minus"></i>
-                  </button>
-                </td>
-              </tr>
-
-              <tr class="order-row">
-                <td class="d-sm-none d-md-block">
-                  <img src="img/ipad.jpg" class="product-image-table" alt="Apple Ipad">
-                </td>
-                <td>Apple Ipad 5</td>
-                <td class="quantity">0</td>
-                <td class="price">€599.99</td>
-                <td class="subtotal">€0</td>
-                <td>
-                  <button class="btn btn-outline-danger btn-remove-product">
-                    <i class="fa fa-minus"></i>
-                  </button>
-                </td>
-              </tr>
-
-              <tr class="order-row">
-                <td class="d-sm-none d-md-block">
-                  <img src="img/iphone-12-pro-family-hero.jpg" class="product-image-table" alt="Apple Iphone 12">
-                </td>
-                <td>Apple Iphone 12 Pro</td>
-                <td class="quantity">0</td>
-                <td class="price">€499.99</td>
-                <td class="subtotal">€0</td>
-                <td>
-                  <button class="btn btn-outline-danger btn-remove-product">
-                    <i class="fa fa-minus"></i>
-                  </button>
-                </td>
-              </tr>
-
-              <tr class="order-row">
-                <td class="d-sm-none d-md-block">
-                  <img src="img/iPhone-XR-red-back.webp" class="product-image-table" alt="Apple Iphone XR">
-                </td>
-                <td>Apple Iphone XR Red</td>
-                <td class="quantity">0</td>
-                <td class="price">€399.99</td>
-                <td class="subtotal">€0</td>
-                <td>
-                  <button class="btn btn-outline-danger btn-remove-product">
-                    <i class="fa fa-minus"></i>
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                  <td colspan="4" class="text-right">Total</td>
-                  <td class="total-order font-weight-bold" colspan="2">€0</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="container text-center">
-          <button type="button" data-toggle="modal" data-target="#checkoutModal" class="btn btn-primary checkout-btn"><i class="fa fa-shopping-cart"></i> Continue to Checkout</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Checkout Modal -->
-  <section>
-    <!-- checkoutModal id so it can be targeted by the data-target attribute on the continue to checkout button-->
-    <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModal" aria-hidden="true"> 
-      <div class="modal-dialog checkout-modal modal-dialog-centered" role="document">
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModal" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header border-bottom-0">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
-  
+          
           <div class="modal-body">
-            <div class="row">
-              <div class="col-md-12">
-                <div class="form-title text-center">
-                  <h3 class="text-info">Billing and Payment</h3>
+            <div class="form-title text-center">
+              <h4>Get in touch!</h4>
+            </div>
+            <div class="d-flex flex-column text-center">
+              <form>
+                <div class="form-group">
+                  <div class="input-group input-group-lg">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text bg-success text-white">
+                        <i class="fas fa-user"></i>
+                      </span>
+                    </div>
+                    <input type="text" class="form-control bg-dark text-white" placeholder="Name">
+                  </div>
                 </div>
       
-                <h4 class="mb-3">Billing Address</h4>
-                <!-- novalidate attribute used to disable default browser validation styling and messages and allow custom bootstrap validation styling and messages -->
-                <form class="needs-validation checkout-form" novalidate>
-                  <div class="row">
-                    <!-- col-md-6 used so first name and last name fields appear on a single row -->
-                    <div class="col-md-6 mb-3">
-                      <label for="firstName">First name</label>
-                      <input type="text" class="form-control" id="firstName" required>
-                      <!-- invalid-feedback class used to make error message text red -->
-                      <div class="invalid-feedback">
-                        Valid first name is required.
-                      </div>
+                <div class="form-group">
+                  <div class="input-group input-group-lg">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text bg-success text-white">
+                        <i class="fas fa-envelope"></i>
+                      </span>
                     </div>
-                    <div class="col-md-6 mb-3">
-                      <label for="lastName">Last name</label>
-                      <input type="text" class="form-control" id="lastName" required>
-                      <div class="invalid-feedback">
-                        Valid last name is required.
-                      </div>
-                    </div>
+                    <input type="email" class="form-control bg-dark text-white" placeholder="Email">
                   </div>
+                </div>
       
-                  <div class="mb-3">
-                    <label for="email">Email</label>
-                    <!-- input-group-prepend class to have the icons be at prepended to the start of the input -->
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="far fa-envelope"></i></span>
-                      </div>
-                      <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
-                      <div class="invalid-feedback">
-                        Please enter a valid email address for shipping updates on your order.
-                      </div>
+                <div class="form-group">
+                  <div class="input-group input-group-lg">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text bg-success text-white contact-textarea--icon">
+                        <i class="fas fa-pencil-alt"></i>
+                      </span>
                     </div>
+                    <textarea cols="20" rows="4" class="form-control bg-dark text-white contact-textarea" placeholder="Please describe your problem in detail and how you would like us to help."></textarea>
                   </div>
-
-                  <div class="mb-3">
-                    <label for="phoneNumber">Phone Number <span class="text-muted">(Optional, for updates on your order via text)</span></label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                      </div>
-                      <input type="tel" class="form-control" id="phoneNumber" placeholder="123-456-7890">
-                    </div>
-                  </div>
+                </div>
       
-                  <div class="mb-3">
-                    <label for="address">Address</label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fa fa-home"></i></span>
-                      </div>
-                      <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
-                      <div class="invalid-feedback">
-                        Please enter your shipping address.
-                      </div>
-                    </div>
-                  </div>
+                <input type="submit" value="Submit" class="btn btn-success btn-block btn-lg">
+              </form>          
+            </div>
+          </div>
 
+        </div>
+      </div>
+    </div>
 
-                  <div class="mb-3">
-                    <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                    <div class="input-group">
-                      <div class="input-group-prepend">
-                          <span class="input-group-text"><i class="fa fa-address-card"></i></span>
-                      </div>
-                      <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-                    </div>
-                  </div>
+    <!-- Features -->
+    <section id="features" class="p-5 mt-5 mb-5"> 
       
-                  <div class="row">
-                    <div class="col-md-5 mb-3">
-                      <label for="country">Country</label>
-                      <!-- custom-select class to use bootstrap styling for select element. w-100 to take up 100% of available width -->
-                      <select class="custom-select d-block w-100" id="country" required>
-                        <option selected value="">Choose...</option>
-                        <option>Ireland</option>
-                        <option>England</option>
-                        <option>Scotland</option>
-                        <option>Wales</option>
-                      </select>
-                      <div class="invalid-feedback">
-                        Please select a valid country.
-                      </div>
-                    </div>
+      <div class="container mb-5">
+        <p class="text-center display-4">Why choose us?</p>
+        <p class="text-center h5">See why we are Galways favourite electronic goods store!</p>
+      </div>
 
-                    <div class="col-md-4 mb-3">
-                      <label for="state">County</label>
-                      <select class="custom-select d-block w-100" id="state" required>
-                        <option selected value="">Choose...</option>
-                        <option>Galway</option>
-                        <option>Cork</option>
-                        <option>Mayo</option>
-                        <option>Dublin</option>
-                      </select>
-                      <div class="invalid-feedback">
-                        Please provide a valid county.
-                      </div>
-                    </div>
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-md-4">
+            <!-- card class is used to create each feature card. -->
+            <div class="card bg-info text-white text-center">
+              <div class="card-body">
+                <i class="fas fa-comments fa-3x"></i>
+                <h3>Fantastic Service</h3>
+                Our friendly and knowledgeable staff will be glad to assist you to better understand your needs.
+              </div>
+            </div>
+          </div>
 
-                    <div class="col-md-3 mb-3">
-                      <label for="postcode">Postcode <span class="text-muted">(Optional)</span></label>
-                      <input type="text" class="form-control" id="postcode">
+          <div class="col-md-4">
+            <div class="card bg-dark text-white text-center">
+              <div class="card-body">
+                <i class="fas fa-cart-plus fa-3x"></i>
+                <h3>Order Online</h3>
+                Order from the comfort of your home and we will deliver the latest tech straight to your door.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card bg-info text-white text-center">
+              <div class="card-body">
+              <i class="fas fa-paper-plane fa-3x"></i>
+              <h3>Free Express Delivery</h3>
+              All online purchases include free express delivery, with orders arriving within 2-5 working days.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Frequently Asked Questions -->
+    <section id="faq" class="py-5 text-center bg-light mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="container mt-5 mb-5">
+              <p class="text-center text-info display-4 ">FAQ</p>
+            </div>
+
+            <!-- Collapse/Accordian Component -->
+            <!-- accordian id is so accordian functionality works and data-parent attribute can target the accordian -->
+            <div id="accordion">
+
+              <!-- The card class is used to style each question and answer pair as a card -->
+              <div class="card">
+                <div class="card-header" href="#collapse1" data-toggle="collapse" data-parent="#accordion">
+                  <h5 class="mb-0">
+                    <div>
+                      What if I change my mind and want to return a product?
                     </div>
+                  </h5>
+                </div>
+
+                <!-- The collapse class hides the content by default. Clicking on the card-header adds the show class which displays the content -->
+                <div id="collapse1" class="collapse show">
+                  <div class="card-body text-left">
+                    No problem! All purchases have a 30-day return window during which you can return the product to get a full refund. Note that this does not 
+                    apply to any products that have been damaged or tampered with.
                   </div>
+                </div>
+              </div>
 
-                  <hr class="mb-4">
+              <div class="card">
+                <div class="card-header" href="#collapse2" data-toggle="collapse" data-parent="#accordion">
+                  <h5 class="mb-0">
+                    <div>
+                      Are discounts available on commercial bulk orders?
+                    </div>
+                  </h5>
+                </div>
 
-                  <!-- custom-checkbox class to use bootstrap styling for checkbox element -->
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="save-billing-information">
-                    <label class="custom-control-label" for="save-billing-information">Save billing information for future purchases</label>
+                <div id="collapse2" class="collapse">
+                  <div class="card-body text-left">
+                    Absolutely! We offer discounts on the total order cost for any bulk purchases from business and commercial customers. This discount is higher the more you order, 
+                    allowing you to furnish your office without breaking the bank.
                   </div>
+                </div>
+              </div>
 
-                  <!-- hr element to have a horizontal divider line between billing and payment information -->
-                  <hr class="mb-4">
-      
-                  <h4 class="mb-3">Payment</h4>
-      
-                  <div class="d-block my-3">
-                    <!-- custom-radio class to use bootstrap styling for radio element -->
-                    <div class="custom-control custom-radio">
-                      <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                      <label class="custom-control-label" for="credit">Credit card</label>
+              <div class="card">
+                <div class="card-header" href="#collapse3" data-toggle="collapse" data-parent="#accordion">
+                  <h5 class="mb-0">
+                    <div>
+                      Can I order custom goods that aren't listed in the product catalogue?
                     </div>
-                    <div class="custom-control custom-radio">
-                      <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                      <label class="custom-control-label" for="debit">Debit card</label>
-                    </div>
+                  </h5>
+                </div>
+
+                <div id="collapse3" class="collapse">
+                  <div class="card-body text-left">
+                    Sure! If you have your eye on a specific gadget that you can't find in our selection, just send us an email specifying that product. We will
+                    let you know if and when we can make it available for you.
                   </div>
-
-                  <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <label for="card-name">Cardholder name</label>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-user"></i></span>
-                        </div>
-                        <input type="text" class="form-control" id="card-name" required>
-                        <div class="invalid-feedback">
-                          Cardholder name is required
-                        </div>
-                      </div>
-                      <small class="text-muted">Full name as displayed on card</small>
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                      <label for="card-number">Card number</label>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
-                        </div>
-                        <input type="text" class="form-control" id="card-number" required>
-                        <div class="invalid-feedback">
-                          Card number is required
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <!-- mr-auto to push the cvv security code input to the right -->
-                    <div class="col-md-5 mb-3 mr-auto">
-                      <label for="card-expiration">Expiration date</label>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-calendar"></i></span>
-                        </div>
-                        <input type="text" class="form-control" id="card-expiration" required>
-                        <div class="invalid-feedback">
-                          Card expiration date required
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-md-5 mb-3">
-                      <label for="card-cvv">CVV security code</label>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                        </div>
-                        <input type="text" class="form-control" id="card-cvv" required>
-                        <div class="invalid-feedback">
-                          Card security code required
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                  <hr class="mb-4">
-                  <button class="btn btn-primary btn-lg btn-block" type="submit">Confirm Order</button>
-                </form>
-              </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="testimonials bg-light py-5 text-center mb-5"> 
+      <div class="container">
+        
+        <div class="container mt-5 mb-3">
+          <h3 class="text-center text-info display-4">Testimonials</h3>
+          <p class="text-center text-dark h5">Here's what our happy customers have to say about us!</p>
+        </div>
+
+        <div class="row pt-5 pb-2">
+          <div class="col-md-6 col-lg-4 item mb-5">
+            <div class="testimonial-textbox">
+              <p class="mb-0">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic non porro, iure aliquam neque ut!</p>
+            </div>
+            <div class="mt-4 pl-3"><img class="rounded-circle testimonial-image" src="img/user-1.jpg" alt="smiling woman">
+              <h5>Sarah Mulaney</h5>
+              <a href="#" class="testimonial-twitter"><i class="fab fa-twitter"></i> sarahm@twitter.com</a>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 item mb-5">
+            <div class="testimonial-textbox">
+              <p class="mb-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa magni at veritatis, consequatur blanditiis recusandae.</p>
+            </div>
+            <div class="mt-4 pl-3"><img class="rounded-circle testimonial-image" src="img/user-2.jpg" alt="smiling man">
+              <h5>Mike Matthews</h5>
+              <a href="#" class="testimonial-twitter"><i class="fab fa-twitter"></i> mikeymatt@twitter.com</a>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 item mb-5">
+            <div class="testimonial-textbox">
+              <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis neque laborum illo ad, autem nam.</p>
+            </div>
+            <div class="mt-4 pl-3"><img class="rounded-circle testimonial-image" src="img/user-3.jpg" alt="smiling bearded man">
+              <h5>Bob Johnson</h5>
+              <a href="#" class="testimonial-twitter"><i class="fab fa-twitter"></i> bobbyj@twitter.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Alert to prompt user to login when they try to add an item to cart without being logged in -->
+    <div class="login-alert text-white mb-4 p-3">
+      <span class="close-login-alert-btn text-white">&times;</span> 
+      To add an item to your cart, please <a href="#"  data-toggle="modal" data-target="#loginModal"><strong class="login-alert-link text-white">Login!</strong></a> 
     </div>
-  </section>
+
+    <!-- Products -->
+    <section id="products" class="py-5 mb-5"> 
+
+      <div class="container mb-5">
+        <h2 class="text-center display-4">Our Products</h2>
+        <p class="text-center h5">We offer top of the range tech at affordable prices!</p>
+      </div>
+
+      <div class="container d-flex justify-content-center">
+        <div class="row">
+
+          <div class="col-md-4 mt-2 mb-3">
+              <!-- Each product listing is done as a card using the card class -->
+              <div class="card">
+                  <div class="card-body product-image-container">
+                    <img src="img/lenovoideapad.jpg" class="card-img product-image img-fluid" alt="Lenovo ideapad laptop"> 
+                  </div>
+                  <div class="card-body bg-light text-center">
+                    <div class="mb-2">
+                        <h4 class="font-weight-semibold mb-2">Lenovo Ideapad</h4>
+                    </div>
+                    <!-- Multiple font awesome star icons are used to show the products rating -->
+                    <div> 
+                      <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> 
+                    </div>
+                    <p class="text-muted mb-3">15 reviews</p> 
+                    <h4 class="mb-4 font-weight-semibold">€799.99</h4>
+                    <button type="button" class="btn btn-outline-primary btn-add-to-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-md-4 mt-2 mb-3">
+              <div class="card">
+                  <div class="card-body product-image-container">
+                    <img src="img/havit-mechanical-keyboard.jpg" class="card-img product-image img-fluid" alt="Havit mechanical keyboard">
+                  </div>
+                  <div class="card-body bg-light text-center">
+                      <div class="mb-2">
+                          <h4 class="font-weight-semibold mb-2">Havit Mechanical Keyboard</h4> 
+                      </div>
+                      <div> 
+                        <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> 
+                      </div>
+                      <p class="text-muted mb-3">9 reviews</p> 
+                      <h4 class="mb-4 font-weight-semibold">€199.99</h4>
+                      <button type="button" class="btn btn-outline-primary btn-add-to-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
+                    </div>
+              </div>
+          </div>
+
+          <div class="col-md-4 mt-2 mb-3">
+              <div class="card">
+                  <div class="card-body product-image-container">
+                    <img src="img/beats-ep-headphones.jpg" class="card-img product-image img-fluid" alt="Beats wired headphones"> 
+                  </div>
+                  <div class="card-body bg-light text-center">
+                      <div class="mb-2">
+                          <h4 class="font-weight-semibold mb-2">Beats Wired Headphones</h4> 
+                      </div>
+                      <div> 
+                        <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> 
+                      </div>
+                      <p class="text-muted mb-3">28 reviews</p> 
+                      <h4 class="mb-4 font-weight-semibold">€149.99</h4>
+                      <button type="button" class="btn btn-outline-primary btn-add-to-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-md-4 mt-2 mb-3">
+              <div class="card">
+                  <div class="card-body product-image-container">
+                      <img src="img/ipad.jpg" class="card-img product-image img-fluid" alt="Apple Ipad">
+                  </div>
+                  <div class="card-body bg-light text-center">
+                      <div class="mb-2">
+                          <h4 class="font-weight-semibold mb-2">Apple Ipad 5</h4> 
+                      </div>
+                      <div> 
+                        <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> 
+                      </div>
+                      <p class="text-muted mb-3">17 reviews</p> 
+                      <h4 class="mb-4 font-weight-semibold">€599.99</h4>
+                      <button type="button" class="btn btn-outline-primary btn-add-to-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-md-4 mt-2 mb-3">
+              <div class="card">
+                  <div class="card-body product-image-container">
+                    <img src="img/iphone-12-pro-family-hero.jpg" class="card-img product-image img-fluid" alt="Apple Iphone 12"> 
+                  </div>
+                  <div class="card-body bg-light text-center">
+                      <div class="mb-2">
+                          <h4 class="font-weight-semibold mb-2">Apple Iphone 12 Pro</h4> 
+                      </div>
+                      <div> 
+                        <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> 
+                      </div>
+                      <p class="text-muted mb-3">6 reviews</p> 
+                      <h4 class="mb-4 font-weight-semibold">€499.99</h4>
+                      <button type="button" class="btn btn-outline-primary btn-add-to-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-md-4 mt-2 mb-3">
+              <div class="card">
+                  <div class="card-body product-image-container">
+                    <img src="img/iPhone-XR-red-back.webp" class="card-img product-image img-fluid" alt="Apple Iphone XR"> 
+                  </div>
+                  <div class="card-body bg-light text-center">
+                      <div class="mb-2">
+                          <h4 class="font-weight-semibold mb-2">Apple Iphone XR Red</h4> 
+                      </div>
+                      <div> 
+                        <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> <i class="fa fa-star star"></i> 
+                      </div>
+                      <p class="text-muted mb-3">11 reviews</p> 
+                      <h4 class="mb-4 font-weight-semibold">€399.99</h4>
+                      <button type="button" class="btn btn-outline-primary btn-add-to-cart"><i class="fa fa-cart-plus mr-2"></i> Add to cart</button>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Order Summary -->
+    <!-- this section is not shown by default, and is only displayed when the user is logged in -->
+    <section class="order-summary py-5 mb-5">
+      <div class="container mb-5">
+        <h4 class="text-center">Your Order</h4>
+      </div>
+      <div class="container">
+        <div class="col-lg-12 col-sm-12">
+          <div class="table-responsive">
+            <table class="table text-center">
+              <thead>
+                <tr>
+                  <!-- d-sm-none class used to not display the image column on small screens -->
+                  <td class="d-sm-none d-md-block">Image</td>
+                  <td>Name</td>
+                  <td>Quantity</td>
+                  <td>Price</td>
+                  <td>Subtotal</td>
+                  <td>Remove</td>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr class="order-row">
+                  <td class="d-sm-none d-md-block">
+                    <img src="img/lenovoideapad.jpg" class="product-image-table" alt="Lenovo ideapad laptop">
+                  </td>
+                  <td>Lenovo Ideapad</td>
+                  <td class="quantity">0</td>
+                  <td class="price">€799.99</td>
+                  <td class="subtotal">€0</td>
+                  <td>
+                    <button class="btn btn-outline-danger btn-remove-product">
+                      <i class="fa fa-minus"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr class="order-row">
+                  <td class="d-sm-none d-md-block">
+                    <img src="img/havit-mechanical-keyboard.jpg" class="product-image-table" alt="Havit mechanical keyboard">
+                  </td>
+                  <td>Havit Mechanical Keyboard</td>
+                  <td class="quantity">0</td>
+                  <td class="price">€199.99</td>
+                  <td class="subtotal">€0</td>
+                  <td>
+                    <button class="btn btn-outline-danger btn-remove-product">
+                      <i class="fa fa-minus"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr class="order-row">
+                  <td class="d-sm-none d-md-block">
+                    <img src="img/beats-ep-headphones.jpg" class="product-image-table" alt="Beats wired headphones">
+                  </td>
+                  <td>Beats Wired Headphones</td>
+                  <td class="quantity">0</td>
+                  <td class="price">€149.99</td>
+                  <td class="subtotal">€0</td>
+                  <td>
+                    <button class="btn btn-outline-danger btn-remove-product">
+                      <i class="fa fa-minus"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr class="order-row">
+                  <td class="d-sm-none d-md-block">
+                    <img src="img/ipad.jpg" class="product-image-table" alt="Apple Ipad">
+                  </td>
+                  <td>Apple Ipad 5</td>
+                  <td class="quantity">0</td>
+                  <td class="price">€599.99</td>
+                  <td class="subtotal">€0</td>
+                  <td>
+                    <button class="btn btn-outline-danger btn-remove-product">
+                      <i class="fa fa-minus"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr class="order-row">
+                  <td class="d-sm-none d-md-block">
+                    <img src="img/iphone-12-pro-family-hero.jpg" class="product-image-table" alt="Apple Iphone 12">
+                  </td>
+                  <td>Apple Iphone 12 Pro</td>
+                  <td class="quantity">0</td>
+                  <td class="price">€499.99</td>
+                  <td class="subtotal">€0</td>
+                  <td>
+                    <button class="btn btn-outline-danger btn-remove-product">
+                      <i class="fa fa-minus"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr class="order-row">
+                  <td class="d-sm-none d-md-block">
+                    <img src="img/iPhone-XR-red-back.webp" class="product-image-table" alt="Apple Iphone XR">
+                  </td>
+                  <td>Apple Iphone XR Red</td>
+                  <td class="quantity">0</td>
+                  <td class="price">€399.99</td>
+                  <td class="subtotal">€0</td>
+                  <td>
+                    <button class="btn btn-outline-danger btn-remove-product">
+                      <i class="fa fa-minus"></i>
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                    <td colspan="4" class="text-right">Total</td>
+                    <td class="total-order font-weight-bold" colspan="2">€0</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="container text-center">
+            <button type="button" data-toggle="modal" data-target="#checkoutModal" class="btn btn-primary checkout-btn"><i class="fa fa-shopping-cart"></i> Continue to Checkout</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checkout Form Modal -->
+    <section>
+      <!-- checkoutModal id so it can be targeted by the data-target attribute on the continue to checkout button-->
+      <div class="modal fade" id="checkoutModal" tabindex="-1" role="dialog" aria-labelledby="checkoutModal" aria-hidden="true"> 
+        <div class="modal-dialog checkout-modal modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+    
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-title text-center">
+                    <h3 class="text-info">Billing and Payment</h3>
+                  </div>
+        
+                  <h4 class="mb-3">Billing Address</h4>
+                  <!-- novalidate attribute used to disable default browser validation styling and messages and allow custom bootstrap validation styling and messages -->
+                  <form class="needs-validation checkout-form" novalidate>
+                    <div class="row">
+                      <!-- col-md-6 used so first name and last name fields appear on a single row -->
+                      <div class="col-md-6 mb-3">
+                        <label for="firstName">First Name*</label>
+                        <input type="text" class="form-control" id="firstName" required>
+                        <!-- invalid-feedback class used to make error message text red -->
+                        <div class="invalid-feedback">
+                          Please enter your first name.
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="lastName">Last Name*</label>
+                        <input type="text" class="form-control" id="lastName" required>
+                        <div class="invalid-feedback">
+                          Please enter your last name.
+                        </div>
+                      </div>
+                    </div>
+        
+                    <div class="mb-3">
+                      <label for="email">Email*</label>
+                      <!-- input-group-prepend class to have the icons be at prepended to the start of the input -->
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="far fa-envelope"></i></span>
+                        </div>
+                        <input type="email" class="form-control" id="email" placeholder="Your email" required>
+                        <div class="invalid-feedback">
+                          Please enter a valid email address.
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mb-3">
+                      <label for="phoneNumber">Phone Number <span class="text-muted">(Optional)</span></label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                        </div>
+                        <input type="tel" class="form-control" id="phoneNumber" placeholder="123-456-7890">
+                      </div>
+                    </div>
+        
+                    <div class="mb-3">
+                      <label for="address">Address*</label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-home"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="address" placeholder="Your address" required>
+                        <div class="invalid-feedback">
+                          Please enter your address.
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                      <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-address-card"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="address2">
+                      </div>
+                    </div>
+        
+                    <div class="row">
+                      <div class="col-md-5 mb-3">
+                        <label for="country">Country*</label>
+                        <select class="custom-select d-block w-100" id="country" required>
+                          <option selected value="">Select Country</option>
+                          <option>Ireland</option>
+                          <option>England</option>
+                          <option>Scotland</option>
+                          <option>Wales</option>
+                        </select>
+                        <div class="invalid-feedback">
+                          Please select your country.
+                        </div>
+                      </div>
+
+                      <div class="col-md-4 mb-3">
+                        <label for="state">County/State*</label>
+                        <select class="custom-select d-block w-100" id="state" required>
+                          <option selected value="">Select County</option>
+                          <option>Galway</option>
+                          <option>Cork</option>
+                          <option>Mayo</option>
+                          <option>Dublin</option>
+                        </select>
+                        <div class="invalid-feedback">
+                          Please select your county/state.
+                        </div>
+                      </div>
+
+                      <div class="col-md-3 mb-3">
+                        <label for="postcode">Postcode <span class="text-muted">(Optional)</span></label>
+                        <input type="text" class="form-control" id="postcode">
+                      </div>
+                    </div>
+
+                    <hr class="mb-4">
+
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" class="custom-control-input" id="save-billing-information">
+                      <label class="custom-control-label" for="save-billing-information">Save billing information for future purchases</label>
+                    </div>
+
+                    <hr class="mb-4">
+        
+                    <h4 class="mb-3">Payment</h4>
+        
+                    <div class="d-block my-3">
+                      <div class="custom-control custom-radio">
+                        <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                        <label class="custom-control-label" for="credit">Credit card</label>
+                      </div>
+                      <div class="custom-control custom-radio">
+                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                        <label class="custom-control-label" for="debit">Debit card</label>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label for="card-name">Cardholder name</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fa fa-user"></i></span>
+                          </div>
+                          <input type="text" class="form-control" id="card-name" required>
+                          <div class="invalid-feedback">
+                            Cardholder name is required
+                          </div>
+                        </div>
+                        <small class="text-muted">Enter the cardholder's name exactly as it appears on the card</small>
+                      </div>
+
+                      <div class="col-md-6 mb-3">
+                        <label for="card-number">Card number</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-credit-card"></i></span>
+                          </div>
+                          <input type="text" class="form-control" id="card-number" required>
+                          <div class="invalid-feedback">
+                            Card number is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-5 mb-3 mr-auto">
+                        <label for="card-expiration">Expiration date</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                          </div>
+                          <input type="text" class="form-control" id="card-expiration" required>
+                          <div class="invalid-feedback">
+                            Card expiration date required
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-md-5 mb-3">
+                        <label for="card-cvv">CVV security code</label>
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                          </div>
+                          <input type="text" class="form-control" id="card-cvv" required>
+                          <div class="invalid-feedback">
+                            Card security code required
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                    <hr class="mb-4">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Confirm Order</button>
+                  </form>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <!-- Footer -->
   <footer class="bg-dark text-center text-white p-3 mt-5">
@@ -926,7 +907,7 @@
   </footer>
 
  
-  <!-- Import Bootstrap Javascript -->
+  <!-- Import jQuery and Bootstrap Javascript -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>

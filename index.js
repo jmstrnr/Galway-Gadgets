@@ -1,7 +1,7 @@
 /*---------------------------------------------------------------------------------*/
 /*-- Query selectors to get DOM elements --*/
 
-// querySelectorAll returns a HTMLCollection of all elements with that CSS identifier
+// HTMLCollections
 const addToCartButtons = document.querySelectorAll('.btn-add-to-cart');
 const removeProductButtons = document.querySelectorAll('.btn-remove-product');
 const orderRows = document.querySelectorAll('.order-row');
@@ -9,7 +9,7 @@ const orderQuantities = document.querySelectorAll('.quantity');
 const orderPrices = document.querySelectorAll('.price');
 const orderSubtotals = document.querySelectorAll('.subtotal');
 
-// querySelector returns a single element with that CSS identifier
+// Single elements
 const loginButton = document.querySelector('.login-btn');
 const signupButton = document.querySelector('.signup-btn');
 const logoutButton = document.querySelector('.logout-btn');
@@ -43,13 +43,14 @@ const user3 = { name: 'mike', email: 'mike@gmail.com', password: 'passmike' };
 const users = [user1, user2, user3];
 
 /*---------------------------------------------------------------------------------*/
-/*-- Signup user function --*/
+/*-- Signup and Login/Logout Functionality --*/
+
+/*-- SignupUser function --*/
 
 // This function will be invoked whenever a user submits a signup form, using the provided information to create a new user
 // and push it onto the end of the users array.
 // Because the data is not being persisted, any created users will be lost if the page is reloaded.
 
-// Class for creating new user instances
 class User {
   constructor(name, email, password) {
     this.name = name;
@@ -59,128 +60,119 @@ class User {
 }
 
 function signupUser() {
-  // Create a new user instance with the provided values
+  // Create a new user
   let newUser = new User(
     signupUsernameInput.value.trim(),
     signupEmailInput.value.trim(),
     signupPasswordInput.value.trim()
   );
-  users.push(newUser); // Push the newly created user onto the end of the users array
+  users.push(newUser);
+
+  authorizeUser(); // Log that user in with helper function
   closeSignupModalButton.click(); // Programatically click the button to dismiss the signup modal
 }
 
 signupForm.addEventListener('submit', signupUser);
 
-/*---------------------------------------------------------------------------------*/
-/*-- Login user function --*/
+/*-- Validate login info function --*/
 
-// This function checks if the values entered are contained in the users array.
-// If so, the user is logged in and the modal is dismissed.
+// This function validates the input username and password against those in the users array.
+// If a matching username and password combination is entered, the user is logged in and the modal is dismissed.
 
-function loginUser() {
-  // Use find method to loop over users array and find a user object whose name property matches the provided username
-  // If there is one, assign it to the variable matchedUser.
-  // trim method used to remove whitespace
-  if (users.find((user) => user.name === loginUsernameInput.value.trim())) {
-    let matchedUser = users.find((user) => {
-      user.name === loginUsernameInput.value.trim();
-      return user;
-    });
-    loginUsernameInput.style.borderColor = 'green'; // Make the the username input border green.
+function validateLoginCredentials() {
+  let inputUsername = loginUsernameInput.value.trim();
+  let inputPassword = loginPasswordInput.value.trim();
 
-    // If the provided password matches the existing password for the matched user...
-    if (matchedUser.password === loginPasswordInput.value.trim()) {
-      loginPasswordInput.style.borderColor = 'green'; // ... make the password input green
-      isLoggedIn = true; // Log the user in
-      orderSummarySection.style.display = 'block'; // Display the order summary section
-      loginButton.style.display = 'none'; // Don't display the login button
-      signupButton.style.display = 'none'; // Don't display the signup button
-      logoutButton.style.display = 'block'; // Display the logout button
-      closeLoginModalButton.click(); // Programatically click the button to dismiss the login modal
-    } else {
-      // If no password match was found, make the password input red
-      loginPasswordInput.style.borderColor = 'red';
-      return;
-    }
-  } else {
-    // If no username match was found, make the username input red
+  // Find a user matching the input username
+  let matchedUser = users.find((user) => user.name === inputUsername);
+
+  if (!matchedUser) {
+    // If no user matching that username found, give error feedback and exit function
     loginUsernameInput.style.borderColor = 'red';
+    return;
+  } else {
+    loginUsernameInput.style.borderColor = 'green';
+  }
+
+  // Check that the input password is the password for the matched user
+  if (matchedUser.password === inputPassword) {
+    loginPasswordInput.style.borderColor = 'green';
+    authorizeUser(); // Log the user in with helper function
+    closeLoginModalButton.click(); // Programatically click the button to dismiss the login modal
+  } else {
+    // If incorrect password entered, give error feedback and exit function
+    loginPasswordInput.style.borderColor = 'red';
     return;
   }
 }
 
-loginForm.addEventListener('submit', loginUser);
+loginForm.addEventListener('submit', validateLoginCredentials);
 
-/*---------------------------------------------------------------------------------*/
+/*-- Authorize user function --*/
+
+// This helper function logs the user in and changes the styling of the page to
+// display content that should only be seen after logging in
+
+function authorizeUser() {
+  isLoggedIn = true;
+
+  // Display content that requires authorization, hide login/sign up buttons
+  orderSummarySection.style.display = 'block';
+  loginButton.style.display = 'none';
+  signupButton.style.display = 'none';
+  logoutButton.style.display = 'block';
+}
+
 /*-- Logout user function --*/
 
 // This function is invoked when the user clicks the logout button, and logs them out.
 
 function logoutUser() {
-  // Check that the user is logged in
   if (isLoggedIn === true) {
-    isLoggedIn = false; // Log the user out
-    loginButton.style.display = 'block'; // Display the login button
-    signupButton.style.display = 'block'; // Display the signup button
-    logoutButton.style.display = 'none'; // Don't display the logout button
-    orderSummarySection.style.display = 'none'; // Don't display the order summary section
+    isLoggedIn = false;
+
+    // Hide content that requires authorization, show login/signup buttons
+    loginButton.style.display = 'block';
+    signupButton.style.display = 'block';
+    logoutButton.style.display = 'none';
+    orderSummarySection.style.display = 'none';
   }
 }
 
 logoutButton.addEventListener('click', logoutUser);
 
 /*---------------------------------------------------------------------------------*/
+/*-- Login Alert functionality --*/
+
 /*-- Show login alert function --*/
 
 // This function will be invoked whenever a user clicks on an add to cart button when they are not logged in.
 // It will trigger an alert tooltip to display at the bottom of the screen prompting them to login.
 
 function showLoginAlert() {
-  // Show the login alert prompting the user to login
   loginAlert.style.display = 'block';
 }
 
-/*---------------------------------------------------------------------------------*/
 /*-- Close login alert function --*/
 
 // This function will be invoked when the user clicks the x button on the login alert, closing the alert.
 
 function closeLoginAlert() {
-  // Show the login alert prompting the user to login
   loginAlert.style.display = 'none';
 }
 
 closeLoginAlertButton.addEventListener('click', closeLoginAlert);
 
 /*---------------------------------------------------------------------------------*/
-/*-- Set order row display function --*/
+/*-- Order Form Functionality --*/
 
-// This function is invoked by the below two functions after the products order quantity has been changed.
-// It checks if the current product order quantity is 0. If it is, the order information for that product in
-// the order summary is not displayed.
+authorizeUser(); // TEMP
 
-function setOrderRowDisplay(currentProductIndex, currentProductQuantity) {
-  // Find the order row for the current product using the currentProductIndex
-  let currentProductRow = orderRows[currentProductIndex];
-
-  // If the current product quantity is 0, dont display the order row for that product
-  if (parseInt(currentProductQuantity.innerHTML) === 0) {
-    currentProductRow.style.display = 'none';
-  } else {
-    // Otherwise do display the order row for that product
-    currentProductRow.style.display = 'table-row';
-  }
-}
-
-/*---------------------------------------------------------------------------------*/
 /*-- Add to cart function --*/
 
 // This function runs every time an add to cart button is pressed. It increments the products quantity, and
-// then updates the subtotal value for that product and the overall total order cost.
-
-// Use forEach to iterate over the 6 add to cart buttons
+// uses helper functions to show that product in the order form, and update the subtotal and total cost.
 const addToCart = addToCartButtons.forEach((addToCartButton, currentProductIndex) => {
-  // Add a click event listener to each add to cart button
   addToCartButton.addEventListener('click', () => {
     // Check if the user is logged in
     if (isLoggedIn === false) {
@@ -199,36 +191,24 @@ const addToCart = addToCartButtons.forEach((addToCartButton, currentProductIndex
     // Increment the current products quantity HTML value to add an extra unit to the cart
     currentProductQuantity.innerHTML++;
 
-    // To calculate the updated subtotal value, parse the existing values into numbers, using substring to remove the € sign from the price value,
-    // then multiply the quantity by the price
-    let updatedSubtotal =
-      parseInt(currentProductQuantity.innerHTML) *
-      parseFloat(currentProductPrice.innerHTML.substring(1));
-    // String template literals are used to add back the € sign, and toFixed is used to limit the number to two decimal places
-    currentProductSubtotal.innerHTML = `€${updatedSubtotal.toFixed(2)}`;
+    updateSubtotal(currentProductQuantity, currentProductPrice, currentProductSubtotal);
 
-    // To calculate the updated total order, parse existing values into numbers and remove the € sign like above,
-    // then add the product price to the total order value
+    // Update the total order cost
     let updatedTotalOrder =
       parseFloat(totalOrder.innerHTML.substring(1)) +
       parseFloat(currentProductPrice.innerHTML.substring(1));
     totalOrder.innerHTML = `€${updatedTotalOrder.toFixed(2)}`;
 
-    // Invoke function to check if order row should be displayed or not based on the products quantity
+    // Invoke helper function to check if order row should be displayed or not based on the products quantity
     setOrderRowDisplay(currentProductIndex, currentProductQuantity);
   });
 });
 
-/*---------------------------------------------------------------------------------*/
 /*-- Remove from cart function --*/
 
-// This function runs every time a remove from cart button is pressed. It decrements the products quantity, and
-// then updates the subtotal value for that product and the overall total order cost.
-
-// Works very similar to above, except an if statement checks if the product quantity is above 0, and
-// then decrements the quantity
+// This function runs every time a remove from cart button is pressed. Works very similar to above, except an
+// if statement checks if the product quantity is above 0, and then decrements the quantity
 const removeFromCart = removeProductButtons.forEach((removeProductButton, currentProductIndex) => {
-  // Add a click event listener to each remove product button
   removeProductButton.addEventListener('click', () => {
     let currentProductQuantity = orderQuantities[currentProductIndex];
     let currentProductPrice = orderPrices[currentProductIndex];
@@ -239,10 +219,7 @@ const removeFromCart = removeProductButtons.forEach((removeProductButton, curren
       // Decrement the current products quantity HTML value to remove a unit from the cart
       currentProductQuantity.innerHTML--;
 
-      let updatedSubtotal =
-        parseInt(currentProductQuantity.innerHTML) *
-        parseFloat(currentProductPrice.innerHTML.substring(1));
-      currentProductSubtotal.innerHTML = `€${updatedSubtotal.toFixed(2)}`;
+      updateSubtotal(currentProductQuantity, currentProductPrice, currentProductSubtotal);
 
       let updatedTotalOrder =
         parseFloat(totalOrder.innerHTML.substring(1)) -
@@ -254,12 +231,43 @@ const removeFromCart = removeProductButtons.forEach((removeProductButton, curren
   });
 });
 
+/*-- Update subtotal function --*/
+
+// This helper function is used to recalculate and display the subtotal for a product,
+// and is invoked whenever a product is added or removed from the cart
+function updateSubtotal(productQuantity, productPrice, productSubtotal) {
+  // Calculate the new subtotal
+  let updatedSubtotal =
+    parseInt(productQuantity.innerHTML) * parseFloat(productPrice.innerHTML.substring(1));
+  // Display the new subtotal
+  productSubtotal.innerHTML = `€${updatedSubtotal.toFixed(2)}`;
+}
+
+/*-- Set order row display function --*/
+
+// This helper function checks if the current product order quantity is 0. If it is, the order information for that product in
+// the order summary is not displayed.
+// It is invoked whenever a product is added or removed from the cart.
+function setOrderRowDisplay(currentProductIndex, currentProductQuantity) {
+  // Find the order row for the current product using the currentProductIndex
+  let currentProductRow = orderRows[currentProductIndex];
+
+  // If the current product quantity is 0, dont display the order row for that product
+  if (parseInt(currentProductQuantity.innerHTML) === 0) {
+    currentProductRow.style.display = 'none';
+  } else {
+    // Otherwise do display the order row for that product
+    currentProductRow.style.display = 'table-row';
+  }
+}
+
 /*---------------------------------------------------------------------------------*/
-/*-- Check valid checkout form inputs function --*/
+/*-- Checkout form functionality --*/
+
+/*-- Validate checkout form function --*/
 
 // This function is invoked when the user presses the confirm order button on the checkout form modal and submits the form.
 // It checks if there are any invalid fields, and if there are, it prevents form submission and displays the error messages.
-
 const validateCheckoutForm = (event) => {
   // Check if the form inputs are valid
   if (checkoutForm.checkValidity() === false) {
