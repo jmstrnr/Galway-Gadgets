@@ -1,6 +1,6 @@
 # Galway Gadgets
 
-A small online electronic store made using Bootstrap as part of GMIT's HDIP in Software Development.
+A small online electronic store created using Bootstrap as part of GMIT's HDIP in Software Development.
 
 Hosted at: https://galway-gadgets-1931a9.netlify.app/
 
