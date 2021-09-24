@@ -141,7 +141,7 @@ function logoutUser() {
 
 logoutButton.addEventListener('click', logoutUser);
 
-/*---------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------------*/
 /*-- Login Alert functionality --*/
 
 /*-- Show login alert function --*/

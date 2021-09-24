@@ -184,7 +184,7 @@ html {
   display: none;
 }
 
-/* For hiding the order summary table rows for each product by default unless the user has added that product to their cart */
+/* For hiding the order summary table rows for each product by default, unless the user has added that product to their cart */
 .order-row {
   display: none;
 }
