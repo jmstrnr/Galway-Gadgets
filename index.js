@@ -166,8 +166,6 @@ closeLoginAlertButton.addEventListener('click', closeLoginAlert);
 /*---------------------------------------------------------------------------------*/
 /*-- Order Form Functionality --*/
 
-authorizeUser(); // TEMP
-
 /*-- Add to cart function --*/
 
 // This function runs every time an add to cart button is pressed. It increments the products quantity, and
