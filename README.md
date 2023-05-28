@@ -1,11 +1,13 @@
 # Galway Gadgets
 
-A small online electronic store created using Bootstrap as part of GMIT's HDIP in Software Development.
-
 Hosted at: https://galway-gadgets-1931a9.netlify.app/
 
-To use the cart, order form and checkout functionality, you can login with the below credentials:
+This application is a small online electronic store with login, shopping cart and checkout form functionality.
 
-username: user
+To use features requiring authorization, you can login with the below credentials:
 
-password: pass
+- username: user
+- password: pass
+
+This application was created in order to improve at frontend development by creating common features like image carousels, FAQ accordians and payment forms.  
+I also wanted to get experience using CSS frameworks like Bootstrap.

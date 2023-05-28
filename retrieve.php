@@ -1,13 +1,13 @@
 <?php
 	
-  // The below code retrieves the contents of the products table from the g00398323 database (which can be imported into
-  // XAMPP with the provided g00398323.sql file), arranging the results in a HTML table.
+  // The below code retrieves the contents of the products table from the galway_gadgets database (which can be imported into
+  // XAMPP with the provided galway_gadgets.sql file), arranging the results in a HTML table.
 
   //Step 1:  Create a database connection
   $dbhost = "localhost";
   $dbuser = "root";
   $dbpassword = "";
-  $dbname = "g00398323";  // dbname is same as GMIT student id
+  $dbname = "galway_gadgets";  
 
   $connection = mysqli_connect($dbhost,$dbuser,$dbpassword,$dbname);
   

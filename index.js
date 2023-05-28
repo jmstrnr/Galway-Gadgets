@@ -45,7 +45,7 @@ const users = [user1, user2, user3];
 /*---------------------------------------------------------------------------------*/
 /*-- Signup and Login/Logout Functionality --*/
 
-/*-- SignupUser function --*/
+/*-- Signup User function --*/
 
 // This function will be invoked whenever a user submits a signup form, using the provided information to create a new user
 // and push it onto the end of the users array.
@@ -116,11 +116,12 @@ loginForm.addEventListener('submit', validateLoginCredentials);
 function authorizeUser() {
   isLoggedIn = true;
 
-  // Display content that requires authorization, hide login/sign up buttons
+  // Display content that requires authorization, hide login/sign up buttons and close alert
   orderSummarySection.style.display = 'block';
   loginButton.style.display = 'none';
   signupButton.style.display = 'none';
   logoutButton.style.display = 'block';
+  closeLoginAlert();
 }
 
 /*-- Logout user function --*/
@@ -193,8 +194,7 @@ const addToCart = addToCartButtons.forEach((addToCartButton, currentProductIndex
 
     // Update the total order cost
     let updatedTotalOrder =
-      parseFloat(totalOrder.innerHTML.substring(1)) +
-      parseFloat(currentProductPrice.innerHTML.substring(1));
+      parseFloat(totalOrder.innerHTML.substring(1)) + parseFloat(currentProductPrice.innerHTML.substring(1));
     totalOrder.innerHTML = `€${updatedTotalOrder.toFixed(2)}`;
 
     // Invoke helper function to check if order row should be displayed or not based on the products quantity
@@ -220,8 +220,7 @@ const removeFromCart = removeProductButtons.forEach((removeProductButton, curren
       updateSubtotal(currentProductQuantity, currentProductPrice, currentProductSubtotal);
 
       let updatedTotalOrder =
-        parseFloat(totalOrder.innerHTML.substring(1)) -
-        parseFloat(currentProductPrice.innerHTML.substring(1));
+        parseFloat(totalOrder.innerHTML.substring(1)) - parseFloat(currentProductPrice.innerHTML.substring(1));
       totalOrder.innerHTML = `€${updatedTotalOrder.toFixed(2)}`;
 
       setOrderRowDisplay(currentProductIndex, currentProductQuantity);
@@ -235,8 +234,7 @@ const removeFromCart = removeProductButtons.forEach((removeProductButton, curren
 // and is invoked whenever a product is added or removed from the cart
 function updateSubtotal(productQuantity, productPrice, productSubtotal) {
   // Calculate the new subtotal
-  let updatedSubtotal =
-    parseInt(productQuantity.innerHTML) * parseFloat(productPrice.innerHTML.substring(1));
+  let updatedSubtotal = parseInt(productQuantity.innerHTML) * parseFloat(productPrice.innerHTML.substring(1));
   // Display the new subtotal
   productSubtotal.innerHTML = `€${updatedSubtotal.toFixed(2)}`;
 }
