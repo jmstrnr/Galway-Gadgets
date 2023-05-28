@@ -9,5 +9,5 @@ To use features requiring authorization, you can login with the below credential
 - username: user
 - password: pass
 
-This application was created in order to improve at frontend development by creating common features like image carousels, FAQ accordians and payment forms.  
+This application was created in order to improve at frontend development by creating common features like image carousels, FAQ accordions and payment forms.  
 I also wanted to get experience using CSS frameworks like Bootstrap.
